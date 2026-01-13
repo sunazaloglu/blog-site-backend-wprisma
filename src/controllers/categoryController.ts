@@ -18,7 +18,7 @@ export const getAllCategoriesController = async (
       | "onlyDeleted"
       | undefined;
 
-    const items = await getAllCategories(showDeleted);
+    const items = await getAllCategories(showDeleted as string);
     return res.status(200).json(items);
   } catch (error) {
     console.log(error);
@@ -41,7 +41,7 @@ export const updateCategoryController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const item = await updateCategory(Number(id), req.body);
-    if (item.length === 0) {
+    if (item) {
       res.status(404).json({ message: "Category not found" });
       return;
     }
@@ -56,7 +56,7 @@ export const deleteCategoryController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const deletedItem = await deleteCategory(Number(id));
-    if (deletedItem.length === 0) {
+    if (deletedItem) {
       res.status(404).json({ message: "Category not found" });
       return;
     }
