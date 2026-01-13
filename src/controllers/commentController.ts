@@ -1,0 +1,111 @@
+import { type Request, type Response } from "express";
+import { getPostById } from "../models/postModel.js";
+import {
+  createComment,
+  deleteComment,
+  getAllComments,
+  getCommentById,
+  updateComment,
+} from "../models/commentModel.js";
+
+export const getAllCommentsController = async (req: Request, res: Response) => {
+  try {
+    const filters: { post?: number; commenter?: string } = {};
+
+    if (req.query.post !== undefined) {
+      const post = Number(req.query.post);
+      if (!Number.isNaN(post)) filters.post = post;
+    }
+
+    if (req.query.commenter !== undefined) {
+      const commenter = req.query.commenter.toString().trim();
+      if (commenter) filters.commenter = commenter;
+    }
+
+    const items = await getAllComments(filters);
+    return res.status(200).json(items);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const createCommentController = async (req: Request, res: Response) => {
+  try {
+    const { post_id, content, commenter_name } = req.body;
+
+    // zorunlu alanlar
+    if (!post_id) {
+      return res.status(400).json({ message: "post_id is required" });
+    }
+
+    if (!content || !commenter_name) {
+      return res
+        .status(400)
+        .json({ message: "content and commenter_name are required" });
+    }
+
+    // post var mı
+    const post = await getPostById(Number(post_id));
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // create
+    const newItem = await createComment({
+      post_id,
+      content,
+      commenter_name,
+    });
+
+    return res.status(201).json(newItem[0]);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const updateCommentController = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const updatedItem = await updateComment(Number(id), req.body);
+    if (updatedItem.length === 0) {
+      res.status(404).json({ message: "Comment not found" });
+      return;
+    }
+    res.status(200).json(updatedItem);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const deleteCommentController = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const deletedItem = await deleteComment(Number(id));
+    if (deletedItem.length === 0) {
+      res.status(404).json({ message: "Comment not found" });
+      return;
+    }
+    res.status(204).json(deletedItem);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+export const getCommentByIdController = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const item = await getCommentById(Number(id));
+
+    if (!item) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    return res.status(200).json(item);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
