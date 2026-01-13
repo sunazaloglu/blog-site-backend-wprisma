@@ -1,42 +1,30 @@
-import db from "../config/database.js";
-type CommentFilters = {
-  post?: number;
-  commenter?: string;
-};
-
-export const getAllComments = async (filters: CommentFilters) => {
-  const q = db("comments").select(
-    "id",
-    "post_id",
-    "content",
-    "commenter_name",
-    "created_at"
-  );
-
-  if (filters.post !== undefined) {
-    q.where("post_id", filters.post);
+import { prisma } from "../config/database.js";
+export const getAllComments = async (post?: number, comments?: string) => {
+  let whereClause: any = {};
+  if (post) {
+    whereClause.post_id = post;
   }
-
-  if (filters.commenter) {
-    // PostgreSQL case-insensitive
-    q.whereILike("commenter_name", `%${filters.commenter}%`);
+  if (comments) {
+    whereClause.content = comments;
   }
-
-  return q;
+  return prisma.comment.findMany({
+    where: whereClause,
+    select: { id: true, commenter_name: true },
+  });
 };
 
 export const createComment = async (data: object) => {
-  return db("comments").insert(data).returning("*");
+  return prisma.comment.create({ data: data as any });
 };
 
 export const updateComment = async (id: number, data: object) => {
-  return db("comments").where({ id }).update(data).returning("*");
+  return prisma.comment.update({ where: { id }, data: data as any });
 };
 
 export const deleteComment = async (id: number) => {
-  return db("comments").where({ id }).delete().returning("*");
+  return prisma.comment.delete({ where: { id } });
 };
 
 export const getCommentById = async (id: number) => {
-  return db("comments").where({ id }).first();
+  return prisma.comment.findFirst({ where: { id } });
 };

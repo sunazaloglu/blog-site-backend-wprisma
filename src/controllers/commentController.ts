@@ -11,7 +11,6 @@ import {
 export const getAllCommentsController = async (req: Request, res: Response) => {
   try {
     const filters: { post?: number; commenter?: string } = {};
-
     if (req.query.post !== undefined) {
       const post = Number(req.query.post);
       if (!Number.isNaN(post)) filters.post = post;
@@ -22,7 +21,7 @@ export const getAllCommentsController = async (req: Request, res: Response) => {
       if (commenter) filters.commenter = commenter;
     }
 
-    const items = await getAllComments(filters);
+    const items = await getAllComments(filters.post, filters.commenter);
     return res.status(200).json(items);
   } catch (error) {
     console.log(error);
@@ -58,7 +57,7 @@ export const createCommentController = async (req: Request, res: Response) => {
       commenter_name,
     });
 
-    return res.status(201).json(newItem[0]);
+    return res.status(201).json(newItem);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Internal server error" });
@@ -69,7 +68,7 @@ export const updateCommentController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const updatedItem = await updateComment(Number(id), req.body);
-    if (updatedItem.length === 0) {
+    if (updatedItem) {
       res.status(404).json({ message: "Comment not found" });
       return;
     }
@@ -84,7 +83,7 @@ export const deleteCommentController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const deletedItem = await deleteComment(Number(id));
-    if (deletedItem.length === 0) {
+    if (deletedItem) {
       res.status(404).json({ message: "Comment not found" });
       return;
     }
