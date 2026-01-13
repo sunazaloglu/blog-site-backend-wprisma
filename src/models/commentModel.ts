@@ -1,4 +1,5 @@
 import { prisma } from "../config/database.js";
+
 export const getAllComments = async (post?: number, comments?: string) => {
   let whereClause: any = {};
   if (post) {
