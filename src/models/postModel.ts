@@ -1,69 +1,54 @@
-import db from "../config/database.js";
-
-type PostStatus = "published" | "draft" | "all";
-type ShowDeleted = "true" | "false" | "onlyDeleted";
+import { prisma } from "../config/database.js";
+import { SHOW_DELETED, POST_STATUS } from "../utils/constants.js";
 
 type PostFilters = {
   category?: number;
-  status?: PostStatus;
-  showDeleted?: ShowDeleted;
+  status?: string;
+  showDeleted?: string;
 };
+export const getAllPosts = async (filters: PostFilters = {}) => {
+  const whereClause: any = {};
 
-export const getAllPosts = async (filters: PostFilters) => {
-  const q = db("posts").select(
-    "id",
-    "category_id",
-    "title",
-    "content",
-    "created_at",
-    "published_at",
-    "deleted_at"
-  );
-
-  // category filter
-  if (filters.category !== undefined) {
-    q.where("category_id", filters.category);
-  }
-
-  // status filter
-  if (filters.status === "published") {
-    q.whereNotNull("published_at");
-  } else if (filters.status === "draft") {
-    q.whereNull("published_at");
-  }
-  // all, no filter
-
-  // showDeleted filter
-  if (filters.showDeleted === "true") {
-    // hepsi, no filter
-  } else if (filters.showDeleted === "onlyDeleted") {
-    q.whereNotNull("deleted_at");
+  if (filters.showDeleted === SHOW_DELETED.TRUE) {
+  } else if (filters.showDeleted === SHOW_DELETED.ONLY_DELETED) {
+    whereClause.deleted_at = { not: null };
   } else {
-    // default: false
-    q.whereNull("deleted_at");
+    whereClause.deleted_at = null;
+  }
+  if (filters.category !== undefined) {
+    whereClause.category_id = filters.category;
+  }
+  if (filters.status === POST_STATUS.PUBLISHED) {
+    whereClause.published_at = { not: null };
+  } else if (filters.status === POST_STATUS.DRAFT) {
+    whereClause.published_at = null;
   }
 
-  return q;
+  return prisma.post.findMany({
+    where: whereClause,
+    select: { id: true, title: true },
+  });
 };
 
 export const createPost = async (data: object) => {
-  return db("posts").insert(data).returning("*");
+  return prisma.post.create({ data: data as any });
 };
 
 export const updatePost = async (id: number, data: object) => {
-  return db("posts")
-    .where({ id, deleted_at: null })
-    .update(data)
-    .returning("*");
+  const result = await prisma.post.updateMany({
+    where: { id, deleted_at: null },
+    data: data as any,
+  });
+  return result;
 };
 
 export const deletePost = async (id: number) => {
-  return db("posts")
-    .where({ id, deleted_at: null })
-    .update({ deleted_at: new Date() })
-    .returning("*");
+  return prisma.post.updateMany({
+    where: { id, deleted_at: null },
+    data: { deleted_at: new Date() },
+  });
 };
 
 export const getPostById = async (id: number) => {
-  return db("posts").where({ id, deleted_at: null }).first();
+  return prisma.post.findFirst({ where: { id, deleted_at: null } });
 };

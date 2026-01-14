@@ -7,30 +7,47 @@ import {
   updatePost,
 } from "../models/postModel.js";
 import { getCategoryById } from "../models/categoryModel.js";
+import { POST_STATUS, SHOW_DELETED } from "../utils/constants.js";
+
 export const getAllPostsController = async (req: Request, res: Response) => {
   try {
     const filters: {
       category?: number;
-      status?: "published" | "draft" | "all";
-      showDeleted?: "true" | "false" | "onlyDeleted";
+      status?: keyof typeof POST_STATUS;
+      showDeleted?: keyof typeof SHOW_DELETED;
     } = {};
 
+    // category
     if (req.query.category !== undefined) {
       const category = Number(req.query.category);
-      if (!Number.isNaN(category)) filters.category = category;
+      if (!Number.isNaN(category)) {
+        filters.category = category;
+      }
     }
 
+    // status
     if (req.query.status !== undefined) {
-      filters.status = req.query.status.toString() as "published" | "draft" | "all";
+      const status = req.query.status.toString();
+      if (
+        status === POST_STATUS.PUBLISHED ||
+        status === POST_STATUS.DRAFT ||
+        status === POST_STATUS.ALL
+      ) {
+        filters.status = status as keyof typeof POST_STATUS;
+      }
     }
 
+    // showDeleted
     if (req.query.showDeleted !== undefined) {
-      filters.showDeleted = req.query.showDeleted.toString() as
-        | "true"
-        | "false"
-        | "onlyDeleted";
+      const showDeleted = req.query.showDeleted.toString();
+      if (
+        showDeleted === SHOW_DELETED.TRUE ||
+        showDeleted === SHOW_DELETED.FALSE ||
+        showDeleted === SHOW_DELETED.ONLY_DELETED
+      ) {
+        filters.showDeleted = showDeleted as keyof typeof SHOW_DELETED;
+      }
     }
-
     const items = await getAllPosts(filters);
     return res.status(200).json(items);
   } catch (error) {
@@ -68,7 +85,7 @@ export const createPostController = async (req: Request, res: Response) => {
       content,
     });
 
-    return res.status(201).json(post[0]);
+    return res.status(201).json(post);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Internal server error" });
@@ -79,7 +96,7 @@ export const updatePostController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const updatedItem = await updatePost(Number(id), req.body);
-    if (updatedItem.length === 0) {
+    if (updatedItem) {
       return res.status(404).json({ message: "Post not found" });
     }
     return res.status(200).json(updatedItem[0]);
@@ -93,10 +110,10 @@ export const deletePostController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const deletedItem = await deletePost(Number(id));
-    if (deletedItem.length === 0) {
+    if (deletedItem) {
       return res.status(404).json({ message: "Post not found" });
     }
-    return res.status(200).json(deletedItem[0]);
+    return res.status(200).json(deletedItem);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Internal server error" });
