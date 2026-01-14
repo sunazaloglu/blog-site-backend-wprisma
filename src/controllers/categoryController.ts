@@ -41,7 +41,7 @@ export const updateCategoryController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const item = await updateCategory(Number(id), req.body);
-    if (item) {
+    if (!item) {
       res.status(404).json({ message: "Category not found" });
       return;
     }
@@ -56,11 +56,11 @@ export const deleteCategoryController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const deletedItem = await deleteCategory(Number(id));
-    if (deletedItem) {
-      res.status(404).json({ message: "Category not found" });
-      return;
+
+    if (!deletedItem) {
+      return res.status(404).json({ message: "Category not found" });
     }
-    res.status(204).json(deletedItem);
+    return res.status(200).json(deletedItem);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
