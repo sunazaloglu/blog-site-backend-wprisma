@@ -96,10 +96,10 @@ export const updatePostController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const updatedItem = await updatePost(Number(id), req.body);
-    if (updatedItem) {
+    if (!updatedItem) {
       return res.status(404).json({ message: "Post not found" });
     }
-    return res.status(200).json(updatedItem[0]);
+    return res.status(200).json(updatedItem);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Internal server error" });
@@ -110,7 +110,7 @@ export const deletePostController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const deletedItem = await deletePost(Number(id));
-    if (deletedItem) {
+    if (!deletedItem) {
       return res.status(404).json({ message: "Post not found" });
     }
     return res.status(200).json(deletedItem);

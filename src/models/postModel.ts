@@ -39,16 +39,29 @@ export const updatePost = async (id: number, data: object) => {
     where: { id, deleted_at: null },
     data: data as any,
   });
-  return result;
+  if (result.count === 0) {
+    return null;
+  }
+
+  return prisma.post.findFirst({ where: { id, deleted_at: null } });
 };
 
 export const deletePost = async (id: number) => {
-  return prisma.post.updateMany({
+  const existing = await prisma.post.findFirst({
     where: { id, deleted_at: null },
+  });
+
+  if (!existing) {
+    return null;
+  }
+
+  await prisma.post.update({
+    where: { id },
     data: { deleted_at: new Date() },
   });
-};
 
+  return existing;
+};
 export const getPostById = async (id: number) => {
   return prisma.post.findFirst({ where: { id, deleted_at: null } });
 };
