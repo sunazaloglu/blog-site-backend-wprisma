@@ -6,8 +6,9 @@ import {
   getTagById,
   updateTag,
 } from "../models/tagModel";
+import { Prisma } from "../generated/prisma";
 
-export const createTagController = async (req: Request, res: Response) => {
+export const createItem = async (req: Request, res: Response) => {
   // Controller logic to create a tag
   try {
     const { name } = req.body;
@@ -53,6 +54,11 @@ export const updateItem = async (req: Request, res: Response) => {
     }
     return res.status(200).json(updatedItem);
   } catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === "P2025") {
+        return res.status(404).json({ message: "Tag not found" });
+      }
+    }
     console.log(error);
     return res.status(500).json({ message: "Internal server error" });
   }
@@ -67,6 +73,11 @@ export const deleteItem = async (req: Request, res: Response) => {
     }
     return res.status(204).json(deletedItem);
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === "P2025") {
+        return res.status(404).json({ message: "Tag not found" });
+      }
+    }
     console.log(error);
     return res.status(500).json({ message: "Internal server error" });
   }
