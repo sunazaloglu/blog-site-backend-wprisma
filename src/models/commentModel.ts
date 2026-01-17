@@ -2,15 +2,15 @@ import { prisma } from "../config/database.js";
 
 export const getAllComments = async (post?: number, comments?: string) => {
   let whereClause: any = {};
-  if (post) {
+  if (!post) {
     whereClause.post_id = post;
   }
   if (comments) {
-    whereClause.content = comments;
+    whereClause.commenter_name = comments;
   }
   return prisma.comment.findMany({
     where: whereClause,
-    select: { id: true, commenter_name: true },
+    select: { id: true, commenter_name: true, content: true, post_id: true },
   });
 };
 
