@@ -8,6 +8,9 @@ import {
 } from "../models/postModel.js";
 import { getCategoryById } from "../models/categoryModel.js";
 import { POST_STATUS, SHOW_DELETED } from "../utils/constants.js";
+import { addTagPost, removeTagFromPost } from "../models/postTagModel.js";
+import { getTagById } from "../models/tagModel.js";
+import { Prisma } from "../generated/prisma";
 
 export const getAllPostsController = async (req: Request, res: Response) => {
   try {
@@ -130,6 +133,104 @@ export const getPostByIdController = async (req: Request, res: Response) => {
 
     return res.status(200).json(item);
   } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const addTagToPostController = async (req: Request, res: Response) => {
+  try {
+    const { postId } = req.params;
+    const { tagId } = req.body;
+    // input validation
+    if (Number.isNaN(postId)) {
+      return res.status(400).json({ message: "postId must be a number" });
+    }
+    if (Number.isNaN(tagId)) {
+      return res.status(400).json({ message: "tagId must be a number" });
+    }
+
+    // entity checks
+    const post = await getPostById(Number(postId));
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    const tag = await getTagById(tagId);
+    if (!tag) {
+      return res.status(404).json({ message: "Tag not found" });
+    }
+
+    // create relation
+    const item = await addTagPost(Number(postId), Number(tagId));
+    return res.status(201).json(item);
+  } catch (error: any) {
+    // Prisma-specific errors
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      // Duplicate relation (tag already added to this post)
+      if (error.code === "P2002") {
+        return res
+          .status(409)
+          .json({ message: "This tag is already added to the post" });
+      }
+
+      // Record not found (rare: if relation update expects existing record)
+      if (error.code === "P2025") {
+        return res.status(404).json({ message: "Post or Tag not found" });
+      }
+
+      // Foreign key constraint (if join insert violates FK for some reason)
+      if (error.code === "P2003") {
+        return res.status(400).json({ message: "Invalid postId or tagId" });
+      }
+    }
+
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const removeTagFromPostController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { postId } = req.params;
+    const { tagId } = req.body;
+    // input validation
+    if (Number.isNaN(postId)) {
+      return res.status(400).json({ message: "postId must be a number" });
+    }
+    if (Number.isNaN(tagId)) {
+      return res.status(400).json({ message: "tagId must be a number" });
+    }
+
+    // post check
+    const post = await getPostById(Number(postId));
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // tag check
+    const tag = await getTagById(tagId);
+    if (!tag) {
+      return res.status(404).json({ message: "Tag not found" });
+    }
+
+    // remove relation
+    const item = await removeTagFromPost(Number(postId), Number(tagId));
+
+    return res.status(204).json(item);
+  } catch (error: any) {
+    // Prisma errors
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      // ilişki yokken silmeye çalışma
+      if (error.code === "P2025") {
+        return res
+          .status(404)
+          .json({ message: "Tag is not associated with this post" });
+      }
+    }
     console.log(error);
     return res.status(500).json({ message: "Internal server error" });
   }
