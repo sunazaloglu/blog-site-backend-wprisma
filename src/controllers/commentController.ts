@@ -7,7 +7,7 @@ import {
   getCommentById,
   updateComment,
 } from "../models/commentModel.js";
-import { Prisma } from "../generated/prisma/edge.js";
+import { Prisma } from "../generated/prisma";
 
 export const getAllCommentsController = async (req: Request, res: Response) => {
   try {
