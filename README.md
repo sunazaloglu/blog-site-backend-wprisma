@@ -63,49 +63,6 @@ The project follows clean code principles, REST standards, and a modular MVC str
 
 ---
 
----
-
-🗄 Database Configuration & Schema
-🧩 Naming Conventions
-ComponentCode Side (Prisma)Database Side (Postgres)Models / TablesPascalCase (e.g., User)snake_case, plural (e.g., users)Fields / Columnssnake_casesnake_caseEnumsPascalCasesnake_case
-📂 Category
-Field Description
-id Primary key
-name Category name
-created_at Creation timestamp
-deleted_at Soft delete timestamp (nullable)
-📝 Post
-Field Description
-id Primary key
-category_id Related category
-title Post title
-content Post content
-created_at Creation timestamp
-published_at Publish date (nullable)
-deleted_at Soft delete timestamp (nullable)
-💬 Comment
-Field Description
-id Primary key
-post_id Related post
-content Comment content
-commenter_name Author name
-created_at Creation timestamp
-🏷 Tag
-Field Description
-id Primary key
-name Tag name
-🔗 Post Tags (Pivot Table)
-
-post_id
-
-tag_id
-
-Composite Primary Key
-
-Implements many-to-many relationship
-
-Uses hard delete (no soft delete required)
-
 🔗 API Endpoints
 
 ### 📂 Categories
@@ -124,7 +81,7 @@ Uses hard delete (no soft delete required)
   - `category`: Filter by category ID
   - `status`: `published`, `draft`, `all`
   - `showDeleted`: `true`, `false`, `onlyDeleted`
-  - `tagIds`: number
+  - `tagIds`: Filter by tag ID
 
 | Method   | Endpoint            | Description             |
 | :------- | :------------------ | :---------------------- |
