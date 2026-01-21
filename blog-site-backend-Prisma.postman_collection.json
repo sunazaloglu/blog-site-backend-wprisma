@@ -1,0 +1,2015 @@
+{
+  "info": {
+    "_postman_id": "75a733d1-f83e-45ed-a4d3-abd3a8586b91",
+    "name": "Blog Site Backend Prisma",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "42401341",
+    "_collection_link": "https://go.postman.co/collection/42401341-75a733d1-f83e-45ed-a4d3-abd3a8586b91?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "List Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories?showDeleted=true",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories"],
+              "query": [
+                {
+                  "key": "showDeleted",
+                  "value": "true",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "List Categories",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/categories?showDeleted=true",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "categories"],
+                  "query": [
+                    {
+                      "key": "showDeleted",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "171"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ab-bDUqsv4mo/A1PSqYyLREvV7HQO8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 11:51:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 4,\n        \"name\": \"su4333\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"su433\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"su43\"\n    },\n    {\n        \"id\": 1,\n        \"name\": \"Test4\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Test4\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"su4333\"\n    },\n    {\n        \"id\": 7,\n        \"name\": \"su4333\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Detail Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Detail Category",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/categories/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "categories", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "82"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"52-MvIfagHz87yiDCYzpBhFkKMzVfw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 11:15:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"name\": \"su4333\",\n    \"created_at\": \"2026-01-14T11:15:08.847Z\",\n    \"deleted_at\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Categories",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"su4333\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Categories",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"su4333\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/categories",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "categories"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "82"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"52-+UQj+iEw9xbBDlQTgWrdlUSelP4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 11:15:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 7,\n    \"name\": \"su4333\",\n    \"created_at\": \"2026-01-14T11:15:10.183Z\",\n    \"deleted_at\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Categories",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test4\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Categories",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Test4\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/categories/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "categories", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "81"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"51-3GdLzZO6n9JW7vNJSk06aMpl+1k\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 11:16:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"name\": \"Test4\",\n    \"created_at\": \"2026-01-14T11:15:08.847Z\",\n    \"deleted_at\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/categories/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "categories", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "8"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Category",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/categories/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "categories", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "7"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "104"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"68-30gheOVzAljixUkOTAZGLw9EBWM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 11:17:12 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 7,\n    \"name\": \"su4333\",\n    \"created_at\": \"2026-01-14T11:15:10.183Z\",\n    \"deleted_at\": \"2026-01-14T11:17:12.677Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "List Posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/posts?tags=2,4",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "posts"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "draft",
+                  "disabled": true
+                },
+                {
+                  "key": "showDeleted",
+                  "value": "false",
+                  "disabled": true
+                },
+                {
+                  "key": "tags",
+                  "value": "2,4"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "List Posts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts"],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "draft",
+                      "disabled": true
+                    },
+                    {
+                      "key": "showDeleted",
+                      "value": "false",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "101"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"65-rM6t3DYA7Yl7gPz7WEcy6IV6HwA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 11:18:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Test3\"\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Test3\"\n    },\n    {\n        \"id\": 3,\n        \"title\": \"Test3\"\n    },\n    {\n        \"id\": 4,\n        \"title\": \"Test3\"\n    }\n]"
+            },
+            {
+              "name": "List Posts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts?tags=2,4",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts"],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "draft",
+                      "disabled": true
+                    },
+                    {
+                      "key": "showDeleted",
+                      "value": "false",
+                      "disabled": true
+                    },
+                    {
+                      "key": "tags",
+                      "value": "2,4"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"33-xTcylYM4hcNXbtKszPjlxvAJg+c\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 21 Jan 2026 09:40:24 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 6,\n        \"title\": \"Test3\"\n    },\n    {\n        \"id\": 8,\n        \"title\": \"Test3\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create Posts",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Test3\",\n    \"content\": \"Test333\",\n    \"category_id\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/posts",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "posts"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Posts",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Test3\",\n    \"content\": \"Test333\",\n    \"category_id\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "138"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8a-/KDXdHmFTlhoMjt+wwZ3vkl6lzY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 11:18:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"title\": \"Test3\",\n    \"content\": \"Test333\",\n    \"category_id\": 5,\n    \"created_at\": \"2026-01-14T11:18:08.209Z\",\n    \"published_at\": null,\n    \"deleted_at\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add Tag To Post",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tagId\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/posts/:postId/tags",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "posts", ":postId", "tags"],
+              "variable": [
+                {
+                  "key": "postId",
+                  "value": "6"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Add Tag To Post",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"tagId\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts/:postId/tags",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts", ":postId", "tags"],
+                  "variable": [
+                    {
+                      "key": "postId",
+                      "value": "8"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "24"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"18-57D14vwWbglRFr2CpL7Tf2eje3M\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 21 Jan 2026 08:59:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"post_id\": 8,\n    \"tag_id\": 2\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Posts",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Test2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/posts/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "posts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "7"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Posts",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Test2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "4"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "138"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8a-aojiaG+8+XkKEoAephRI4dYEsmM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 11:57:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 4,\n    \"title\": \"Test2\",\n    \"content\": \"Test333\",\n    \"category_id\": 5,\n    \"created_at\": \"2026-01-14T11:18:16.862Z\",\n    \"published_at\": null,\n    \"deleted_at\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Post",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/posts/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "posts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Post",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "138"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8a-HzjBCokwmeYzfdL0YTYzbGw0vNM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 13:17:11 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"title\": \"Test3\",\n    \"content\": \"Test333\",\n    \"category_id\": 5,\n    \"created_at\": \"2026-01-14T13:16:43.362Z\",\n    \"published_at\": null,\n    \"deleted_at\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Tag To Post",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tagId\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/posts/:postId/tags",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "posts", ":postId", "tags"],
+              "variable": [
+                {
+                  "key": "postId",
+                  "value": "6"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Post",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "138"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8a-HzjBCokwmeYzfdL0YTYzbGw0vNM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 13:17:11 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"title\": \"Test3\",\n    \"content\": \"Test333\",\n    \"category_id\": 5,\n    \"created_at\": \"2026-01-14T13:16:43.362Z\",\n    \"published_at\": null,\n    \"deleted_at\": null\n}"
+            },
+            {
+              "name": "Delete Tag To Post",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"tagId\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts/:postId/tags",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts", ":postId", "tags"],
+                  "variable": [
+                    {
+                      "key": "postId",
+                      "value": "6"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"18-pKLYsjO5YCrCwtspj+C82wWdZaI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 21 Jan 2026 09:14:39 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Detail Post",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/posts/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "posts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Detail Post",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/posts/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "posts", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "28"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1c-DL8tGGICEZMKGbak4RMHZ6BNy0o\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 11:53:36 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Post not found\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "List Comments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/comments?commenter=su-3-2",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "comments"],
+              "query": [
+                {
+                  "key": "showDeleted",
+                  "value": "true",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "post",
+                  "value": "3",
+                  "disabled": true
+                },
+                {
+                  "key": "commenter",
+                  "value": "su-3-2"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "List Comments",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/comments",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "comments"],
+                  "query": [
+                    {
+                      "key": "showDeleted",
+                      "value": "true",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "post",
+                      "value": "3",
+                      "disabled": true
+                    },
+                    {
+                      "key": "commenter",
+                      "value": "su-2",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "204"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cc-zgQxymCHWGSc7ikjNN6wKJ3p1IU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 11:09:24 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 3,\n        \"commenter_name\": \"su-3\",\n        \"content\": \"yorum 3\",\n        \"post_id\": 7\n    },\n    {\n        \"id\": 1,\n        \"commenter_name\": \"su-3-2\",\n        \"content\": \"yorum 3-2\",\n        \"post_id\": 7\n    },\n    {\n        \"id\": 2,\n        \"commenter_name\": \"su-3-2\",\n        \"content\": \"yorum 3-2\",\n        \"post_id\": 7\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create Comments",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"post_id\": 7,\n    \"content\": \"yorum 3\",\n    \"commenter_name\": \"su-3\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/comments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "comments"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Comments",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"post_id\": 7,\n    \"content\": \"yorum 3\",\n    \"commenter_name\": \"su-3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/comments",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "comments"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "104"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"68-pYO/Jes6Bii9rphAsWi40qQuW8M\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 14 Jan 2026 13:17:45 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 3,\n    \"post_id\": 7,\n    \"content\": \"yorum 3\",\n    \"commenter_name\": \"su-3\",\n    \"created_at\": \"2026-01-14T13:17:45.658Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Comments",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"post_id\": 7,\n    \"content\": \"yorum 77\",\n    \"commenter_name\": \"su-3-2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/comments/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "comments", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Comments",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"post_id\": 7,\n    \"content\": \"yorum 77\",\n    \"commenter_name\": \"su-3-2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/comments/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "comments", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "107"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6b-MbWn9oCiLnqWgi9Xh5bCGoGHsMQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 11:09:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 2,\n    \"post_id\": 7,\n    \"content\": \"yorum 77\",\n    \"commenter_name\": \"su-3-2\",\n    \"created_at\": \"2026-01-14T13:17:45.096Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/comments/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "comments", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Comment",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/comments/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "comments", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "108"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6c-x4U1DaOCC+XRaJr/ssTYAetjEac\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 12:00:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"post_id\": 7,\n    \"content\": \"yorum 3-2\",\n    \"commenter_name\": \"su-3-2\",\n    \"created_at\": \"2026-01-14T13:17:41.784Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Detail Comment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/comments/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "comments", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Detail Comment",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/comments/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "comments", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "107"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6b-MbWn9oCiLnqWgi9Xh5bCGoGHsMQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 12:00:30 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 2,\n    \"post_id\": 7,\n    \"content\": \"yorum 77\",\n    \"commenter_name\": \"su-3-2\",\n    \"created_at\": \"2026-01-14T13:17:45.096Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tags",
+      "item": [
+        {
+          "name": "List Tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tags",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "tags"]
+            }
+          },
+          "response": [
+            {
+              "name": "List Tags",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/tags",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "tags"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "93"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"5d-5AUv18VFWwoP6j9MHm9wFxIYN+c\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 12:44:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Tag1\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Tag2\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Tag3\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Tag4\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Create Tags",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Tag4\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tags",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "tags"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Tags",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Tag4\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/tags",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "tags"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "22"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16-1hCKim5h+yKE6O26qx0GH2YLX3Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 12:44:15 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 4,\n    \"name\": \"Tag4\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Tags",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Tags222\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tags/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "tags", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Tags",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Tags222\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/tags/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "tags", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "25"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19-f3NGiRU2eo5DYoYoPKgw1AIDwGk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 12:46:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 2,\n    \"name\": \"Tags222\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Tags",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tags/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "tags", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Tags",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/tags/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "tags", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "3"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "27"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b-wVTwY8JHaMAHD57oJSBmnVxtk4U\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 13:33:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Tag not found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Detail Tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tags/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "tags", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Detail Tags",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/tags/:id",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "tags", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "22"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16-yyzCaLULEaX8GGvTN7/LLQfBxro\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Jan 2026 12:45:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 2,\n    \"name\": \"Tag2\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Projectcheck",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/projectcheck",
+          "host": ["{{base_url}}"],
+          "path": ["projectcheck"]
+        }
+      },
+      "response": [
+        {
+          "name": "Projectcheck",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projectcheck",
+              "host": ["{{base_url}}"],
+              "path": ["projectcheck"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "16"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"10-MxB4y4MLcx6QDsp8b8vgp7iFMFo\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 07 Jan 2026 19:26:07 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"OK\"\n}"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [{ "key": "base_url", "value": "http://localhost:3000" }]
+}
