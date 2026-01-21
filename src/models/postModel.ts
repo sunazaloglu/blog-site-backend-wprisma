@@ -5,9 +5,10 @@ type PostFilters = {
   category?: number;
   status?: string;
   showDeleted?: string;
+  tagIds?: number[];
 };
 export const getAllPosts = async (filters: PostFilters = {}) => {
-  const whereClause: any = {};
+  let whereClause: any = {};
 
   if (filters.showDeleted === SHOW_DELETED.TRUE) {
   } else if (filters.showDeleted === SHOW_DELETED.ONLY_DELETED) {
@@ -22,6 +23,13 @@ export const getAllPosts = async (filters: PostFilters = {}) => {
     whereClause.published_at = { not: null };
   } else if (filters.status === POST_STATUS.DRAFT) {
     whereClause.published_at = null;
+  }
+  if (filters.tagIds && filters.tagIds.length > 0) {
+    whereClause.post_tags = {
+      some: {
+        tag_id: { in: filters.tagIds },
+      },
+    };
   }
 
   return prisma.post.findMany({

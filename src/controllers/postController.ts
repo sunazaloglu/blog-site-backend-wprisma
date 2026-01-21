@@ -18,6 +18,7 @@ export const getAllPostsController = async (req: Request, res: Response) => {
       category?: number;
       status?: keyof typeof POST_STATUS;
       showDeleted?: keyof typeof SHOW_DELETED;
+      tagIds?: number[];
     } = {};
 
     // category
@@ -49,6 +50,18 @@ export const getAllPostsController = async (req: Request, res: Response) => {
         showDeleted === SHOW_DELETED.ONLY_DELETED
       ) {
         filters.showDeleted = showDeleted as keyof typeof SHOW_DELETED;
+      }
+    }
+    if (req.query.tags !== undefined) {
+      const raw = req.query.tags.toString().trim();
+
+      const tagIds = raw
+        .split(",")
+        .map((x) => Number(x.trim()))
+        .filter((n) => !Number.isNaN(n));
+
+      if (tagIds.length > 0) {
+        filters.tagIds = tagIds;
       }
     }
     const items = await getAllPosts(filters);
