@@ -18,7 +18,7 @@ The project follows clean code principles, REST standards, and a modular MVC str
 - **Language:** TypeScript
 - **Database:** PostgreSQL
 - **ORM:** Prisma ORM
-- - **Architecture:** MVC
+- **Architecture:** MVC
 
 ## 📦 Installation & Setup
 
